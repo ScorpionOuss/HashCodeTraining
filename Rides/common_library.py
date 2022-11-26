@@ -9,7 +9,7 @@ T = 0  # number of steps in the simulation
 Rides = []  # list of rides
 
 
-class ride:
+class Ride:
     def __init__(self, a, b, x, y, s, f):
         self.a = a  # the row of the start intersection
         self.b = b  # the column of the start intersection
@@ -46,7 +46,7 @@ def read_input():
     T = line1[5]
     for _ in range(N):
         line = [int(i) for i in input().split()]
-        Rides.append(ride(line[0], line[1], line[2], line[3], line[4], line[5]))
+        Rides.append(Ride(line[0], line[1], line[2], line[3], line[4], line[5]))
 
 
 def evaluate(allocations: list[list[Ride]]):
