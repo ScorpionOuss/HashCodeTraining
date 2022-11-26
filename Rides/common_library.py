@@ -18,6 +18,9 @@ class ride:
         self.f = f  # the latest finish
         self.distance = abs(x - a) + abs(y - b)
         self.latest_start = f - self.distance
+    def distance_to_start(self,x ,y):
+        """ returns the distance of the start from x,y (can be car coordinates)"""
+        return abs(self.a-x)+abs(self.b-y)
 
 
 def read_input():
