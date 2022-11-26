@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 R = 0  # number of rows of the grid
 C = 0  # number of columns of the grid
@@ -23,10 +23,6 @@ class Ride:
     def distance_to_start(self, x, y):
         """ returns the distance of the start from x,y (can be car coordinates)"""
         return abs(self.a - x) + abs(self.b - y)
-
-    def distance_to_finish(self):
-        """ returns the distance of the finish position"""
-        return abs(self.a - self.x) + abs(self.b - self.y)
 
 
 def read_input():
@@ -58,14 +54,14 @@ def evaluate(allocations: list[list[Ride]]):
         for ride in rides:
             timestamp += ride.distance_to_start(*car_pos)
             on_time = timestamp == ride.s
-            timestamp += ride.distance_to_finish()
+            timestamp += ride.distance
             car_pos = (ride.x, ride.y)
             if timestamp < T:
                 car_score += 1 + int(on_time) * B
             else:
                 break
         total_score += car_score
-    return car_score
+    return total_score
         
 
 read_input()
