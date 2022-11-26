@@ -58,7 +58,7 @@ def evaluate(allocations: list[list[Ride]]):
             timestamp += ride.distance
             car_pos = (ride.x, ride.y)
             if timestamp < T:
-                car_score += 1 + int(on_time) * B
+                car_score += ride.distance + int(on_time) * B
             else:
                 break
         total_score += car_score
