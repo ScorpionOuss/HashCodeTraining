@@ -9,6 +9,18 @@ T = 0  # number of steps in the simulation
 Rides = []  # list of rides
 
 
+class Memoize:
+    def __init__(self, f):
+        self.f = f
+        self.memo = {}
+
+    def __call__(self, *args):
+        if not args in self.memo:
+            self.memo[args] = self.f(*args)
+        # Warning: You may wish to do a deepcopy here if returning objects
+        return self.memo[args]
+
+
 class Ride:
     def __init__(self, a, b, x, y, s, f):
         self.a = a  # the row of the start intersection
@@ -23,6 +35,11 @@ class Ride:
     def distance_to_start(self, x, y):
         """ returns the distance of the start from x,y (can be car coordinates)"""
         return abs(self.a - x) + abs(self.b - y)
+
+
+@Memoize
+def distance(ride1, ride2):
+    return ride2.distance_to_start(ride1.x, ride1.y)
 
 
 def read_input():
@@ -45,7 +62,7 @@ def read_input():
         Rides.append(Ride(line[0], line[1], line[2], line[3], line[4], line[5]))
 
 
-def evaluate(allocations: list[list[Ride]]):
+def evaluate(allocations):  # list[list[Ride]]
     total_score = 0
     for rides in allocations:
         car_score = 0
@@ -63,6 +80,6 @@ def evaluate(allocations: list[list[Ride]]):
                 break
         total_score += car_score
     return total_score
-        
+
 
 read_input()
