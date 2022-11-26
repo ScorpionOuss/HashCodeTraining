@@ -1,23 +1,24 @@
 #!/usr/bin/env python
-R=0
-C=0
-F=0
-N=0
-B=0
-T=0
-Rides=[]
+R = 0  # number of rows of the grid
+C = 0  # number of columns of the grid
+F = 0  # number of vehicles in the fleet
+N = 0  # number of rides
+B = 0  # per-ride bonus for starting the ride on time
+T = 0  # number of steps in the simulation
+Rides = []  # list of rides
 
 
 class ride:
     def __init__(self, a, b, x, y, s, f):
-        self.a = a
-        self.b = b
-        self.x = x
-        self.y = y
-        self.s = s
-        self.f = f
-        self.distance = abs(x-a)+abs(y-b)
-        self.latest_start= f-self.distance
+        self.a = a  # the row of the start intersection
+        self.b = b  # the column of the start intersection
+        self.x = x  # the row of the finish intersection
+        self.y = y  # the column of the finish intersection
+        self.s = s  # the earliest start
+        self.f = f  # the latest finish
+        self.distance = abs(x - a) + abs(y - b)
+        self.latest_start = f - self.distance
+
 
 def read_input():
     global R
@@ -36,7 +37,7 @@ def read_input():
     T = line1[5]
     for _ in range(N):
         line = [int(i) for i in input().split()]
-        Rides.append(ride(line[0],line[1],line[2],line[3],line[4],line[5]))
+        Rides.append(ride(line[0], line[1], line[2], line[3], line[4], line[5]))
 
 
 read_input()
