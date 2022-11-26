@@ -58,6 +58,7 @@ def evaluate(allocations: list[list[Ride]]):
         for ride in rides:
             timestamp += ride.distance_to_start(*car_pos)
             on_time = timestamp == ride.s
+            timestamp += timestamp - ride.s
             timestamp += ride.distance_to_finish()
             car_pos = (ride.x, ride.y)
             if timestamp < T:
