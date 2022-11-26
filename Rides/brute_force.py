@@ -60,7 +60,7 @@ def find_optimum_with_arrangements():
         visited_rides = set()
 
         def recursive_enumeration():
-            if len(visited_rides) == R:
+            if len(visited_rides) == N:
                 # We treated all rides
                 test_solution = evaluate(fleets_list)
                 if test_solution > current_score:
