@@ -2,37 +2,36 @@
 
 from common_library import Rides, distance, R, C, F, N, B, T
 from common_library import evaluate
-Rides.sort(key=lambda x: x.a*x.b) # this only improves the algorithm
-def choose_next(actual_ride, discovered,from0):
-    min_ride = actual_ride
-    min_dist = float("inf")
-    min_distmult = float("inf")
-    for ride in Rides:
-        if ride not in discovered:
-            d = distance(actual_ride, ride)
-            if from0:
-                return ride     
-            # return  ride, d
-            if d+1000 // ride.distance < min_distmult:
-                min_ride = ride
-                min_dist = d
-                min_distmult= d+1000 //ride.distance
-    return min_ride, min_dist
+
+Rides.sort(key=lambda x: x.a * x.b)  # this only improves the algorithm
 
 
-scheduel = [[] for _ in range(F)]
-actual_ride = Rides[0]
-discovered = {actual_ride}
-total_distance = actual_ride.distance_to_start(0, 0)
-while len(discovered) < N:
-    print(total_distance)
-    next_ride, distance_to_ride = choose_next(actual_ride, discovered)
-    discovered.add(next_ride)
-    total_distance += distance_to_ride + next_ride.distance
-    carNumber = total_distance // T
-    if carNumber >= F:
-        break
+def choose_ride(car_position):
+    return min(filter(lambda ride: ride not in USED_RIDES, Rides),
+               key=lambda ride: ride.distance_to_start(car_position[0], car_position[1]))
+
+
+schedule = []
+USED_RIDES = set()
+for carNumber in range(F):
     print(carNumber)
-    scheduel[carNumber].append(next_ride)
+    car_position = (0, 0)
+    travel_distance = 0
+    rides = []
+    distance_between = 0
+    while True:
+        next_ride = choose_ride(car_position)
+        if not next_ride:
+            break
+        travel_distance += next_ride.distance + next_ride.distance_to_start(car_position[0], car_position[1])
+        if travel_distance >= T:
+            break
+        distance_between += next_ride.distance + next_ride.distance_to_start(car_position[0], car_position[1])
+        rides.append(next_ride)
+        USED_RIDES.add(next_ride)
+        car_position = (next_ride.x, next_ride.y)
+    schedule.append(rides)
+    print(travel_distance)
+    print(distance_between)
 
-print(evaluate(scheduel))
+print(evaluate(schedule))

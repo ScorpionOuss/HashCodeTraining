@@ -12,7 +12,8 @@ from copy import deepcopy
 # T = 0  # number of steps in the simulation
 # Rides = []  # list of rides
 
-
+Rides=[1,2,3]
+N=3
 def find_optimum():
     """
     Return the optimal solution using the brute force approach
@@ -66,16 +67,16 @@ def find_optimum_with_arrangements():
         nonlocal current_score
         nonlocal current_solution
         if len(visited_rides) == N:
-            number_of_arrangements+=1
-            # We treated all rides
-            test_solution = evaluate(fleets_list)
+            #number_of_arrangements+=1
+            ## We treated all rides
+            #test_solution = evaluate(fleets_list)
             print(fleets_list)
-            print(test_solution)
-            if test_solution > current_score:
-                current_score = test_solution
-                print(current_score)
-                current_solution = deepcopy(fleets_list)
-                print(current_solution)
+            #print(test_solution)
+            #if test_solution > current_score:
+            #    current_score = test_solution
+            #    print(current_score)
+            #    current_solution = deepcopy(fleets_list)
+            #    print(current_solution)
 
         for i in range(N):
             if i not in visited_rides:
