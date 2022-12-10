@@ -61,13 +61,13 @@ def find_optimum_with_arrangements():
 
     fleets_list = [[] for _ in range(F)]
     visited_rides = set()
-    number_of_arrangements = 0
+    arrangements = set()
     def recursive_enumeration():
-        nonlocal number_of_arrangements
+        nonlocal arrangements
         nonlocal current_score
         nonlocal current_solution
         if len(visited_rides) == N:
-            #number_of_arrangements+=1
+            arrangements.add(tuple(tuple(x) for x in fleets_list ))
             ## We treated all rides
             #test_solution = evaluate(fleets_list)
             print(fleets_list)
@@ -89,7 +89,7 @@ def find_optimum_with_arrangements():
                 visited_rides.remove(i)
 
     recursive_enumeration()
-    print("number of arrangements: ",number_of_arrangements)
+    print("number of arrangements: ",len(arrangements))
     return current_solution
 
 

@@ -69,13 +69,13 @@ def find_optimum_with_arrangements():
             number_of_arrangements+=1
             # We treated all rides
             test_solution = evaluate(fleets_list)
-            print(fleets_list)
-            print(test_solution)
+            print(len(fleets_list[0]),len(Rides))
+            #print(fleets_list)
+            #print(test_solution)
             if test_solution > current_score:
                 current_score = test_solution
-                print(current_score)
                 current_solution = deepcopy(fleets_list)
-                print(current_solution)
+                print(current_score)
 
         for i in range(N):
             if i not in visited_rides:

@@ -7,7 +7,10 @@ Rides.sort(key=lambda x: x.a * x.b)  # this only improves the algorithm
 
 
 def choose_ride(car_position):
-    return min(filter(lambda ride: ride not in USED_RIDES, Rides),
+    remaining_rides = list(filter(lambda ride: ride not in USED_RIDES, Rides))
+    if not remaining_rides:
+        return None
+    return min(remaining_rides,
                key=lambda ride: ride.distance_to_start(car_position[0], car_position[1]))
 
 
