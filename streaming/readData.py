@@ -79,7 +79,5 @@ for _ in range(R):
     request = Request(rv, re, rn)
     Requests.append(request)
 
-print(V, E, R, C, X)
-print(Endpoints)
-print(Sizes)
-print(Requests)
+
+streaming_data = Streaming(V, E, R, C, X, Sizes, Endpoint, Requests)
