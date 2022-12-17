@@ -3,12 +3,13 @@
 from common_library import Rides, distance, R, C, F, N, B, T
 from common_library import evaluate
 
-Rides.sort(key=lambda ride1: ride1.s+ride1.distance)
+Rides.sort(key=lambda ride1: ride1.s)
 
 schedule = [[] for _ in range(F)]
 time_stamp = [0 for _ in range(F)]
 car_position = [(0, 0) for _ in range(F)]
 i = 0
+
 for ride in Rides:
     schedule[i % F].append(ride)
     time_stamp[i % F] = max(ride.distance_to_start(car_position[i % F][0], car_position[i % F][1]),
