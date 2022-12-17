@@ -60,7 +60,7 @@ class Request:
 V, E, R, C, X = map(int, input().split())
 
 # Videos size
-Sizes = map(int, input().split())
+Sizes = list(map(int, input().split()))
 
 Endpoints = []
 # Endpoint Description

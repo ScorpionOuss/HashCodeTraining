@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from readData import streaming_data
+from evaluate import evaluate
 
 print(streaming_data.V, streaming_data.C, streaming_data.X)
 
@@ -53,3 +54,4 @@ def optimal_video_placement():
 
 
 print(optimal_video_placement())
+print(evaluate(optimal_video_placement()))
