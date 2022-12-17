@@ -8,11 +8,11 @@ class Streaming:
     """
 
     def __init__(self, v, e, r, c, x, sizes, endpoints, requests):
-        self.V = v
-        self.E = e
-        self.R = r
-        self.C = c
-        self.X = x
+        self.V = v  # number of videos
+        self.E = e  # number of endpoints
+        self.R = r  # number of requests
+        self.C = c  # number of caches
+        self.X = x  # cache size
         self.Sizes = sizes
         self.Endpoints = endpoints
         self.Requests = requests
@@ -78,6 +78,5 @@ for _ in range(R):
     rv, re, rn = map(int, input().split())
     request = Request(rv, re, rn)
     Requests.append(request)
-
 
 streaming_data = Streaming(V, E, R, C, X, Sizes, Endpoint, Requests)
