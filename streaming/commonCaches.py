@@ -43,15 +43,18 @@ def optimal_video_placement():
     cache_distribution = [[0, []] for _ in range(streaming_data.C)]
 
     for video in videos_ranking:
+        size = streaming_data.Sizes[video[1]]
         for cache in cache_distribution:
-            if video[0] < streaming_data.X - cache[0]:
-                cache[0] += video[0]
+            print(size, streaming_data.X - cache[0])
+            if size < streaming_data.X - cache[0]:
+                cache[0] += size
                 cache[1].append(video[1])
                 break
 
 
     return {i:cache_distribution[i][1] for i in range(streaming_data.C)}
 
+optimal_video_placement()
 
 print(optimal_video_placement())
 print(evaluate(optimal_video_placement()))
