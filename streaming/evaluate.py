@@ -9,6 +9,7 @@ def is_valid(solution: dict):
             return False
     return True
 
+
 def get_lowest_latency(request: Request, solution: dict):
     endpoint = Endpoints[request.idEndpoint]
     latencies = []
@@ -18,6 +19,7 @@ def get_lowest_latency(request: Request, solution: dict):
         else:
             latencies.append(float("+inf"))
     return min(endpoint.latencyDC, latencies)
+
 
 def evaluate(solution):
     assert is_valid(solution), "Solution invalid"
