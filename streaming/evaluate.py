@@ -3,6 +3,9 @@ from readData import Endpoints, Requests, Sizes, X
 
 
 def is_valid(solution: dict):
+    """
+    Checks if videos fit in the caches
+    """
     for videos in solution.values():
         s = sum(Sizes[video] for video in videos)
         if s > X:
@@ -11,6 +14,9 @@ def is_valid(solution: dict):
 
 
 def get_lowest_latency(request: Request, solution: dict):
+    """
+
+    """
     endpoint = Endpoints[request.idEndpoint]
     latencies = []
     for connection in endpoint.cacheConnections:
@@ -18,13 +24,16 @@ def get_lowest_latency(request: Request, solution: dict):
             latencies.append(connection.latency)
         else:
             latencies.append(float("+inf"))
-    return min(endpoint.latencyDC, latencies)
+    return min(endpoint.latencyDC, min(latencies))
 
 
 def evaluate(solution):
     assert is_valid(solution), "Solution invalid"
     total_latency = 0
-    for id, request in enumerate(Requests):
-        l = get_lowest_latency(id, solution)
-        total_latency += request.numReq * (l - Endpoints[request.idEndpoint].latencyDC)
-    return round(total_latency * 1000 / len(Requests))
+    total_requests = 0
+    for request in Requests:
+        l = get_lowest_latency(request, solution)
+        total_latency += request.numReq * (Endpoints[request.idEndpoint].latencyDC - l)
+        total_requests += request.numReq
+
+    return round(total_latency * 1000 / total_requests)

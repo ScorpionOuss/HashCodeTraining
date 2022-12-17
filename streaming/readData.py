@@ -60,7 +60,7 @@ class Request:
 V, E, R, C, X = map(int, input().split())
 
 # Videos size
-Sizes = map(int, input().split())
+Sizes = list(map(int, input().split()))
 
 Endpoints = []
 # Endpoint Description
@@ -79,7 +79,4 @@ for _ in range(R):
     request = Request(rv, re, rn)
     Requests.append(request)
 
-print(V, E, R, C, X)
-print(Endpoints)
-print(Sizes)
-print(Requests)
+streaming_data = Streaming(V, E, R, C, X, Sizes, Endpoint, Requests)
