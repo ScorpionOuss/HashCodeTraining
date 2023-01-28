@@ -13,7 +13,7 @@ class Streaming:
         self.R = r  # number of requests
         self.C = c  # number of caches
         self.X = x  # cache size
-        self.Sizes = sizes
+        self.Sizes = sizes # video sizes
         self.Endpoints = endpoints
         self.Requests = requests
 
